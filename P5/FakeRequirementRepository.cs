@@ -17,18 +17,78 @@ namespace P5
         private List<Requirement> requirements;
 
         public string Add(Requirement requirement)
-        { }
+        {
+            foreach (Requirement r in requirements)
+            {
+                if (r.Statement == requirement.Statement)
+                    return DUPLICATE_STATEMENT_ERROR;
+            }
+            if (requirement.Statement == "")
+                return EMPTY_STATEMENT_ERROR;
+            return NO_ERROR;
+        }
+    
         public List<Requirement> GetAll(int ProjectId)
-        { }
+        {
+            List<Requirement> getAll = new List<Requirement>();
+            foreach (Requirement r in requirements)
+            {
+                if (r.ProjectId == ProjectId)
+                    getAll.Add(r);
+            }
+
+            return getAll;
+        }
+
         public string Remove(Requirement requirement)
-        { }
+        {
+            foreach (Requirement r in requirements)
+            {
+                if (r == requirement)
+                {
+                    requirements.Remove(r);
+                    return NO_ERROR;
+                }
+            }
+            return REQUIREMENT_NOT_FOUND_ERROR;
+        }
+
         public string Modify(Requirement requirement)
-        { }
+        {
+            return NO_ERROR;
+        }
+
         public Requirement GetRequirementById(int requirementId)
-        { }
+        {
+            Requirement requirement = new Requirement();
+
+            foreach (Requirement r in requirements)
+            {
+                if (r.Id == requirementId)
+                    requirement = r;
+            }
+
+            return requirement;
+        }
+
         public int CountByFeatureId(int featureId)
-        { }
+        {
+            int count = 0;
+            foreach (Requirement r in requirements)
+            {
+                if (r.FeaturedId == featureId)
+                    count++;
+            }
+            return count;
+        }
+
         public void RemoveByFeatureId(int featureId)
-        { }
+        { 
+            foreach (Requirement r in requirements)
+            {
+                if (r.FeaturedId == featureId)
+                    requirements.Remove(r);
+            }
+        }
     }
 }
