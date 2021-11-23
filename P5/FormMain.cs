@@ -10,11 +10,15 @@ namespace P5
         private FakeAppUserRepository _CurrentFakeAppUserRepository = new FakeAppUserRepository();
         private FakeIssueRepository _CurrentFakeIssueRepository = new FakeIssueRepository();
         private FakeIssueStatusRepository _CurrentFakeIssueStatusRepository;
+        private FakeFeatureRepository _CurrentFakeFeatureRepository;
+        private FakeRequirementRepository _CurrentFakeRequirementRepository;
         private Issue _CurrentSelectedIssue;
+        private Feature _CurrentSelectedFeature;
         public FormMain()
         {
             InitializeComponent();
             this._CurrentFakeIssueStatusRepository = new FakeIssueStatusRepository();
+            this._CurrentFakeFeatureRepository = new FakeFeatureRepository();
         }
 
         private void preferencesCreateProjectToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -157,6 +161,78 @@ namespace P5
                 }
             }
             selectIssue.Dispose();
+        }
+
+        private void featureCreateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCreateFeature createFeature = new FormCreateFeature(_CurrentProjectId, _CurrentFakeFeatureRepository);
+            createFeature.ShowDialog();
+
+            while (createFeature.DialogResult == DialogResult.OK && createFeature.returnString != "")
+            {
+                createFeature.ShowDialog();
+
+            }
+            createFeature.Close();
+
+        }
+
+        private void featureModifyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSelectFeature formSelectFeature = new FormSelectFeature(_CurrentFakeFeatureRepository, _CurrentProjectId);
+            DialogResult selectResult = formSelectFeature.ShowDialog();
+
+            if (selectResult == DialogResult.OK)
+            {
+                _CurrentSelectedFeature = formSelectFeature.selectedFeature;
+                FormModifyFeature modifyFeature = new FormModifyFeature(_CurrentSelectedFeature, _CurrentFakeFeatureRepository);
+                DialogResult modifyResult = modifyFeature.ShowDialog();
+                
+            }
+        }
+
+        private void featureRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSelectFeature formSelectFeature = new FormSelectFeature(_CurrentFakeFeatureRepository, _CurrentProjectId);
+            formSelectFeature.ShowDialog();
+
+            if (formSelectFeature.DialogResult == DialogResult.OK && formSelectFeature.selectedFeature != null)
+            {
+                _CurrentSelectedFeature = formSelectFeature.selectedFeature;
+                string message = "Are you sure you want to remove: " + _CurrentSelectedFeature.Title;
+                string title = "Confirmation";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(message, title, buttons);
+                if (result == DialogResult.Yes)
+                {
+                    _CurrentFakeFeatureRepository.Remove(_CurrentSelectedFeature);
+                    _CurrentSelectedFeature = null;
+                }
+                else
+                {
+                    message = "Remove canceled.";
+                    title = "Attention";
+                    buttons = MessageBoxButtons.OK;
+                    MessageBox.Show(message, title, buttons);
+                }
+            }
+        }
+
+        private void requirementCreateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormCreateRequirement formCreateRequirement = new FormCreateRequirement();
+            formCreateRequirement.ShowDialog();
+        }
+
+        private void requirementModifyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormModifyRequirement modifyRequirement = new FormModifyRequirement();
+            modifyRequirement.ShowDialog();
+        }
+
+        private void requirementRemoveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

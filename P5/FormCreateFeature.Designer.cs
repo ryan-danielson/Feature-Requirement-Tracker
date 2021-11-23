@@ -1,5 +1,5 @@
 ﻿
-namespace Builder
+namespace P5
 {
     partial class FormCreateFeature
     {
@@ -38,7 +38,7 @@ namespace Builder
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 50);
+            this.label1.Location = new System.Drawing.Point(41, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 17);
             this.label1.TabIndex = 0;
@@ -46,20 +46,23 @@ namespace Builder
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 50);
+            this.textBox1.Location = new System.Drawing.Point(86, 50);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(537, 22);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // buttonCreateFeature
             // 
             this.buttonCreateFeature.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonCreateFeature.Location = new System.Drawing.Point(500, 104);
+            this.buttonCreateFeature.Location = new System.Drawing.Point(491, 104);
             this.buttonCreateFeature.Name = "buttonCreateFeature";
             this.buttonCreateFeature.Size = new System.Drawing.Size(132, 23);
             this.buttonCreateFeature.TabIndex = 2;
             this.buttonCreateFeature.Text = "Create Feature";
             this.buttonCreateFeature.UseVisualStyleBackColor = true;
+            this.buttonCreateFeature.Click += new System.EventHandler(this.buttonCreateFeature_Click);
+            this.buttonCreateFeature.Enter += new System.EventHandler(this.buttonCreateFeature_Click);
             // 
             // buttonCancel
             // 
@@ -75,13 +78,15 @@ namespace Builder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(683, 177);
+            this.ClientSize = new System.Drawing.Size(674, 159);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonCreateFeature);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "FormCreateFeature";
             this.Text = "Create Feature";
+            this.Load += new System.EventHandler(this.FormCreateFeature_Load);
+            this.Enter += new System.EventHandler(this.FormCreateFeature_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

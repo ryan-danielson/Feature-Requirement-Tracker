@@ -1,5 +1,5 @@
 ﻿
-namespace Builder
+namespace P5
 {
     partial class FormSelectFeature
     {
@@ -30,43 +30,37 @@ namespace Builder
         private void InitializeComponent()
         {
             this.dataGridViewSelectFeature = new System.Windows.Forms.DataGridView();
-            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnFeature = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonSelectFeature = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnFeature = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSelectFeature)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewSelectFeature
             // 
+            this.dataGridViewSelectFeature.AllowUserToAddRows = false;
+            this.dataGridViewSelectFeature.AllowUserToDeleteRows = false;
+            this.dataGridViewSelectFeature.AllowUserToResizeColumns = false;
+            this.dataGridViewSelectFeature.AllowUserToResizeRows = false;
             this.dataGridViewSelectFeature.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSelectFeature.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewSelectFeature.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnId,
             this.ColumnFeature});
             this.dataGridViewSelectFeature.Location = new System.Drawing.Point(38, 35);
+            this.dataGridViewSelectFeature.MultiSelect = false;
             this.dataGridViewSelectFeature.Name = "dataGridViewSelectFeature";
+            this.dataGridViewSelectFeature.ReadOnly = true;
             this.dataGridViewSelectFeature.RowHeadersWidth = 51;
             this.dataGridViewSelectFeature.RowTemplate.Height = 24;
+            this.dataGridViewSelectFeature.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSelectFeature.Size = new System.Drawing.Size(726, 339);
             this.dataGridViewSelectFeature.TabIndex = 0;
+            this.dataGridViewSelectFeature.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridViewSelectFeature.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // ColumnId
-            // 
-            this.ColumnId.FillWeight = 21.39038F;
-            this.ColumnId.HeaderText = "Id";
-            this.ColumnId.MinimumWidth = 6;
-            this.ColumnId.Name = "ColumnId";
-            this.ColumnId.ReadOnly = true;
-            // 
-            // ColumnFeature
-            // 
-            this.ColumnFeature.FillWeight = 178.6096F;
-            this.ColumnFeature.HeaderText = "Feature";
-            this.ColumnFeature.MinimumWidth = 6;
-            this.ColumnFeature.Name = "ColumnFeature";
-            this.ColumnFeature.ReadOnly = true;
+            this.dataGridViewSelectFeature.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridViewSelectFeature.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // buttonSelectFeature
             // 
@@ -77,6 +71,7 @@ namespace Builder
             this.buttonSelectFeature.TabIndex = 1;
             this.buttonSelectFeature.Text = "Select Feature";
             this.buttonSelectFeature.UseVisualStyleBackColor = true;
+            this.buttonSelectFeature.Click += new System.EventHandler(this.buttonSelectFeature_Click);
             // 
             // buttonCancel
             // 
@@ -88,6 +83,24 @@ namespace Builder
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // ColumnId
+            // 
+            this.ColumnId.DataPropertyName = "Id";
+            this.ColumnId.FillWeight = 21.39038F;
+            this.ColumnId.HeaderText = "Id";
+            this.ColumnId.MinimumWidth = 6;
+            this.ColumnId.Name = "ColumnId";
+            this.ColumnId.ReadOnly = true;
+            // 
+            // ColumnFeature
+            // 
+            this.ColumnFeature.DataPropertyName = "Feature";
+            this.ColumnFeature.FillWeight = 178.6096F;
+            this.ColumnFeature.HeaderText = "Feature";
+            this.ColumnFeature.MinimumWidth = 6;
+            this.ColumnFeature.Name = "ColumnFeature";
+            this.ColumnFeature.ReadOnly = true;
+            // 
             // FormSelectFeature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -98,6 +111,7 @@ namespace Builder
             this.Controls.Add(this.dataGridViewSelectFeature);
             this.Name = "FormSelectFeature";
             this.Text = "Select Feature";
+            this.Load += new System.EventHandler(this.FormSelectFeature_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSelectFeature)).EndInit();
             this.ResumeLayout(false);
 
@@ -106,9 +120,9 @@ namespace Builder
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewSelectFeature;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFeature;
         private System.Windows.Forms.Button buttonSelectFeature;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFeature;
     }
 }

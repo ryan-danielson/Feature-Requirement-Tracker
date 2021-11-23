@@ -1,5 +1,5 @@
 ﻿
-namespace Builder
+namespace P5
 {
     partial class FormModifyFeature
     {
@@ -60,6 +60,7 @@ namespace Builder
             this.buttonModifyFeature.TabIndex = 2;
             this.buttonModifyFeature.Text = "Modify Feature";
             this.buttonModifyFeature.UseVisualStyleBackColor = true;
+            this.buttonModifyFeature.Click += new System.EventHandler(this.buttonModifyFeature_Click);
             // 
             // buttonCancel
             // 
@@ -82,6 +83,7 @@ namespace Builder
             this.Controls.Add(this.label1);
             this.Name = "FormModifyFeature";
             this.Text = "FormModifyFeature";
+            this.Load += new System.EventHandler(this.FormModifyFeature_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

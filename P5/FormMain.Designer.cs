@@ -49,14 +49,14 @@
             this.issuesReportTrendByDateRangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.requirementsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.feaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.featureCreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.featureModifyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.featureRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.requirementCreateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.requirementModifyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.requirementRemoveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.designToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -214,9 +214,9 @@
             // 
             this.requirementsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.feaToolStripMenuItem,
-            this.createToolStripMenuItem1,
-            this.modifyToolStripMenuItem1,
-            this.removeToolStripMenuItem1});
+            this.requirementCreateToolStripMenuItem1,
+            this.requirementModifyToolStripMenuItem1,
+            this.requirementRemoveToolStripMenuItem1});
             this.requirementsToolStripMenuItem.Name = "requirementsToolStripMenuItem";
             this.requirementsToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
             this.requirementsToolStripMenuItem.Text = "&Requirement";
@@ -224,12 +224,54 @@
             // feaToolStripMenuItem
             // 
             this.feaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createToolStripMenuItem,
-            this.modifyToolStripMenuItem,
-            this.removeToolStripMenuItem});
+            this.featureCreateToolStripMenuItem,
+            this.featureModifyToolStripMenuItem,
+            this.featureRemoveToolStripMenuItem});
             this.feaToolStripMenuItem.Name = "feaToolStripMenuItem";
             this.feaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.feaToolStripMenuItem.Text = "Feature";
+            // 
+            // featureCreateToolStripMenuItem
+            // 
+            this.featureCreateToolStripMenuItem.Name = "featureCreateToolStripMenuItem";
+            this.featureCreateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.featureCreateToolStripMenuItem.Text = "Create";
+            this.featureCreateToolStripMenuItem.Click += new System.EventHandler(this.featureCreateToolStripMenuItem_Click);
+            // 
+            // featureModifyToolStripMenuItem
+            // 
+            this.featureModifyToolStripMenuItem.Name = "featureModifyToolStripMenuItem";
+            this.featureModifyToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.featureModifyToolStripMenuItem.Text = "Modify";
+            this.featureModifyToolStripMenuItem.Click += new System.EventHandler(this.featureModifyToolStripMenuItem_Click);
+            // 
+            // featureRemoveToolStripMenuItem
+            // 
+            this.featureRemoveToolStripMenuItem.Name = "featureRemoveToolStripMenuItem";
+            this.featureRemoveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.featureRemoveToolStripMenuItem.Text = "Remove";
+            this.featureRemoveToolStripMenuItem.Click += new System.EventHandler(this.featureRemoveToolStripMenuItem_Click);
+            // 
+            // requirementCreateToolStripMenuItem1
+            // 
+            this.requirementCreateToolStripMenuItem1.Name = "requirementCreateToolStripMenuItem1";
+            this.requirementCreateToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.requirementCreateToolStripMenuItem1.Text = "Create";
+            this.requirementCreateToolStripMenuItem1.Click += new System.EventHandler(this.requirementCreateToolStripMenuItem1_Click);
+            // 
+            // requirementModifyToolStripMenuItem1
+            // 
+            this.requirementModifyToolStripMenuItem1.Name = "requirementModifyToolStripMenuItem1";
+            this.requirementModifyToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.requirementModifyToolStripMenuItem1.Text = "Modify";
+            this.requirementModifyToolStripMenuItem1.Click += new System.EventHandler(this.requirementModifyToolStripMenuItem1_Click);
+            // 
+            // requirementRemoveToolStripMenuItem1
+            // 
+            this.requirementRemoveToolStripMenuItem1.Name = "requirementRemoveToolStripMenuItem1";
+            this.requirementRemoveToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.requirementRemoveToolStripMenuItem1.Text = "Remove";
+            this.requirementRemoveToolStripMenuItem1.Click += new System.EventHandler(this.requirementRemoveToolStripMenuItem1_Click);
             // 
             // designToolStripMenuItem
             // 
@@ -242,42 +284,6 @@
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.testToolStripMenuItem.Text = "&Test";
-            // 
-            // createToolStripMenuItem
-            // 
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.createToolStripMenuItem.Text = "Create";
-            // 
-            // modifyToolStripMenuItem
-            // 
-            this.modifyToolStripMenuItem.Name = "modifyToolStripMenuItem";
-            this.modifyToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.modifyToolStripMenuItem.Text = "Modify";
-            // 
-            // removeToolStripMenuItem
-            // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.removeToolStripMenuItem.Text = "Remove";
-            // 
-            // createToolStripMenuItem1
-            // 
-            this.createToolStripMenuItem1.Name = "createToolStripMenuItem1";
-            this.createToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.createToolStripMenuItem1.Text = "Create";
-            // 
-            // modifyToolStripMenuItem1
-            // 
-            this.modifyToolStripMenuItem1.Name = "modifyToolStripMenuItem1";
-            this.modifyToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.modifyToolStripMenuItem1.Text = "Modify";
-            // 
-            // removeToolStripMenuItem1
-            // 
-            this.removeToolStripMenuItem1.Name = "removeToolStripMenuItem1";
-            this.removeToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.removeToolStripMenuItem1.Text = "Remove";
             // 
             // FormMain
             // 
@@ -322,12 +328,12 @@
         private System.Windows.Forms.ToolStripMenuItem designToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem feaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modifyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem modifyToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem featureCreateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem featureModifyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem featureRemoveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem requirementCreateToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem requirementModifyToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem requirementRemoveToolStripMenuItem1;
     }
 }
 

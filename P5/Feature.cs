@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P5
 {
-    class Feature
+    public class Feature
     {
         public int Id;
         public int ProjectId;
