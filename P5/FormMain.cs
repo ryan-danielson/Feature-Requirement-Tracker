@@ -19,6 +19,7 @@ namespace P5
             InitializeComponent();
             this._CurrentFakeIssueStatusRepository = new FakeIssueStatusRepository();
             this._CurrentFakeFeatureRepository = new FakeFeatureRepository();
+            this._CurrentFakeRequirementRepository = new FakeRequirementRepository();
         }
 
         private void preferencesCreateProjectToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -205,8 +206,26 @@ namespace P5
                 DialogResult result = MessageBox.Show(message, title, buttons);
                 if (result == DialogResult.Yes)
                 {
-                    _CurrentFakeFeatureRepository.Remove(_CurrentSelectedFeature);
-                    _CurrentSelectedFeature = null;
+                    if (_CurrentFakeRequirementRepository.CountByFeatureId(_CurrentSelectedFeature.Id) > 0)
+                    {
+                        message = "There are one or more requirements associated with this feature." +
+                                         "These requirements will be destroyed if you remove this feature." +
+                                         "Are you sure you want to remove: " + _CurrentSelectedFeature.Title + "?";
+                        title = "Confirmation";
+                        buttons = MessageBoxButtons.YesNo;
+                        result = MessageBox.Show(message, title, buttons);
+                        if (result == DialogResult.Yes)
+                        {
+                            _CurrentFakeRequirementRepository.RemoveByFeatureId(_CurrentSelectedFeature.Id);
+                            _CurrentFakeFeatureRepository.Remove(_CurrentSelectedFeature);
+                            _CurrentSelectedFeature = null;
+                        }
+                    } else
+                    {
+                        _CurrentFakeFeatureRepository.Remove(_CurrentSelectedFeature);
+                        _CurrentSelectedFeature = null;
+                    }
+
                 }
                 else
                 {
@@ -220,13 +239,13 @@ namespace P5
 
         private void requirementCreateToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormCreateRequirement formCreateRequirement = new FormCreateRequirement();
+            FormCreateRequirement formCreateRequirement = new FormCreateRequirement(_CurrentFakeFeatureRepository, _CurrentFakeRequirementRepository, _CurrentProjectId);
             formCreateRequirement.ShowDialog();
         }
 
         private void requirementModifyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormModifyRequirement modifyRequirement = new FormModifyRequirement();
+            FormModifyRequirement modifyRequirement = new FormModifyRequirement(_CurrentFakeRequirementRepository, _CurrentFakeFeatureRepository, _CurrentProjectId);
             modifyRequirement.ShowDialog();
         }
 

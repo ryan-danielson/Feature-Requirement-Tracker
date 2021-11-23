@@ -1,7 +1,7 @@
 ﻿
 namespace P5
 {
-    partial class FormCreateRequirement
+    public partial class FormCreateRequirement
     {
         /// <summary>
         /// Required designer variable.
@@ -50,10 +50,12 @@ namespace P5
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(127, 47);
+            this.comboBox1.MaxDropDownItems = 100;
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(599, 24);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.Text = "<Make Selection>";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -84,6 +86,7 @@ namespace P5
             this.buttonCreateRequirement.TabIndex = 4;
             this.buttonCreateRequirement.Text = "Create Requirement";
             this.buttonCreateRequirement.UseVisualStyleBackColor = true;
+            this.buttonCreateRequirement.Click += new System.EventHandler(this.buttonCreateRequirement_Click);
             // 
             // buttonCancel
             // 
@@ -108,6 +111,7 @@ namespace P5
             this.Controls.Add(this.label1);
             this.Name = "FormCreateRequirement";
             this.Text = "Create Requirement";
+            this.Load += new System.EventHandler(this.FormCreateRequirement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

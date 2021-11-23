@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P5
 {
-    class FakeRequirementRepository : IRequirementRepository
+    public class FakeRequirementRepository : IRequirementRepository
     {
         public string NO_ERROR = "";
         public string DUPLICATE_STATEMENT_ERROR = "Statements must be unique.";
@@ -14,7 +14,7 @@ namespace P5
         public string REQUIREMENT_NOT_FOUND_ERROR = "Requirement does not exist.";
         public string MISSING_FEATUREDID_ERROR = "Must select a feature for this requirement.";
         public string MISSING_PROJECTID_ERROR = "Must select a project for this requirement.";
-        private List<Requirement> requirements;
+        private List<Requirement> requirements = new List<Requirement>();
 
         public string Add(Requirement requirement)
         {

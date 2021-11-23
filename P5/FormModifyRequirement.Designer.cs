@@ -62,6 +62,7 @@ namespace P5
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(628, 24);
             this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -70,6 +71,7 @@ namespace P5
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(628, 363);
             this.textBox1.TabIndex = 3;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // buttonModifyRequirement
             // 
@@ -80,6 +82,7 @@ namespace P5
             this.buttonModifyRequirement.TabIndex = 4;
             this.buttonModifyRequirement.Text = "Modify Requirement";
             this.buttonModifyRequirement.UseVisualStyleBackColor = true;
+            this.buttonModifyRequirement.Click += new System.EventHandler(this.buttonModifyRequirement_Click);
             // 
             // buttonCancel
             // 
@@ -104,6 +107,7 @@ namespace P5
             this.Controls.Add(this.label1);
             this.Name = "FormModifyRequirement";
             this.Text = "Modify Requirement";
+            this.Load += new System.EventHandler(this.FormModifyRequirement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

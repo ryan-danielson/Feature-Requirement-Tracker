@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P5
 {
-    interface IRequirementRepository
+    public interface IRequirementRepository
     {
         string Add(Requirement requirement);
         List<Requirement> GetAll(int ProjectId);
