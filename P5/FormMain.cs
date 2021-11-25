@@ -9,17 +9,15 @@ namespace P5
         private int _CurrentProjectId;
         private FakeAppUserRepository _CurrentFakeAppUserRepository = new FakeAppUserRepository();
         private FakeIssueRepository _CurrentFakeIssueRepository = new FakeIssueRepository();
-        private FakeIssueStatusRepository _CurrentFakeIssueStatusRepository;
-        private FakeFeatureRepository _CurrentFakeFeatureRepository;
-        private FakeRequirementRepository _CurrentFakeRequirementRepository;
+        private FakeIssueStatusRepository _CurrentFakeIssueStatusRepository = new FakeIssueStatusRepository();
+        private FakeFeatureRepository _CurrentFakeFeatureRepository = new FakeFeatureRepository();
+        private FakeRequirementRepository _CurrentFakeRequirementRepository = new FakeRequirementRepository();
         private Issue _CurrentSelectedIssue;
         private Feature _CurrentSelectedFeature;
+        private Requirement _CurrentSelectedRequirement;
         public FormMain()
         {
             InitializeComponent();
-            this._CurrentFakeIssueStatusRepository = new FakeIssueStatusRepository();
-            this._CurrentFakeFeatureRepository = new FakeFeatureRepository();
-            this._CurrentFakeRequirementRepository = new FakeRequirementRepository();
         }
 
         private void preferencesCreateProjectToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -174,7 +172,7 @@ namespace P5
                 createFeature.ShowDialog();
 
             }
-            createFeature.Close();
+            createFeature.Dispose();
 
         }
 
@@ -186,10 +184,12 @@ namespace P5
             if (selectResult == DialogResult.OK)
             {
                 _CurrentSelectedFeature = formSelectFeature.selectedFeature;
-                FormModifyFeature modifyFeature = new FormModifyFeature(_CurrentSelectedFeature, _CurrentFakeFeatureRepository);
-                DialogResult modifyResult = modifyFeature.ShowDialog();
-                
+                FormModifyFeature formModifyFeature = new FormModifyFeature(_CurrentSelectedFeature, _CurrentFakeFeatureRepository);
+                DialogResult modifyResult = formModifyFeature.ShowDialog();
+                formModifyFeature.Dispose();
             }
+            formSelectFeature.Dispose();
+
         }
 
         private void featureRemoveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -235,23 +235,62 @@ namespace P5
                     MessageBox.Show(message, title, buttons);
                 }
             }
+            formSelectFeature.Dispose();
         }
 
         private void requirementCreateToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormCreateRequirement formCreateRequirement = new FormCreateRequirement(_CurrentFakeFeatureRepository, _CurrentFakeRequirementRepository, _CurrentProjectId);
             formCreateRequirement.ShowDialog();
+            formCreateRequirement.Dispose();
         }
 
         private void requirementModifyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormModifyRequirement modifyRequirement = new FormModifyRequirement(_CurrentFakeRequirementRepository, _CurrentFakeFeatureRepository, _CurrentProjectId);
-            modifyRequirement.ShowDialog();
+            FormSelectRequirement formSelectRequirement = new FormSelectRequirement(ref _CurrentFakeRequirementRepository, ref _CurrentFakeFeatureRepository, _CurrentProjectId);
+            formSelectRequirement.ShowDialog();
+            if (formSelectRequirement.DialogResult == DialogResult.OK)
+            {
+                _CurrentSelectedRequirement = formSelectRequirement.selectedRequirement;
+                FormModifyRequirement formModifyRequirement = new FormModifyRequirement(_CurrentFakeRequirementRepository, _CurrentFakeFeatureRepository, _CurrentProjectId, _CurrentSelectedRequirement);
+                formModifyRequirement.ShowDialog();
+                if (formModifyRequirement.DialogResult == DialogResult.OK)
+                {
+                    _CurrentSelectedRequirement = null;
+                }
+                formModifyRequirement.Dispose();
+            }
+            formSelectRequirement.Dispose();
         }
 
         private void requirementRemoveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            
+            FormSelectRequirement formSelectRequirement = new FormSelectRequirement(ref _CurrentFakeRequirementRepository, ref _CurrentFakeFeatureRepository, _CurrentProjectId);
+            formSelectRequirement.ShowDialog();
+            if (formSelectRequirement.DialogResult == DialogResult.OK)
+            {
+                _CurrentSelectedRequirement = formSelectRequirement.selectedRequirement;
+                string message = "Are you sure you want to remove: " + _CurrentSelectedRequirement.Statement;
+                string title = "Confirmation";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(message, title, buttons);
+                if (result == DialogResult.Yes)
+                {
+                    string success =_CurrentFakeRequirementRepository.Remove(_CurrentSelectedRequirement);
+
+                    if (success != "")
+                    {
+                        message = success;
+                        title = "Attention";
+                        buttons = MessageBoxButtons.OK;
+                        MessageBox.Show(message, title, buttons);
+                    } else
+                    {
+                        _CurrentSelectedRequirement = null;
+                    }
+                }
+            }
+            formSelectRequirement.Dispose();
         }
     }
 }

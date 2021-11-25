@@ -27,8 +27,6 @@ namespace P5
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // selectedFeature = comboBox1.SelectedIndex;
-
             textBox1.Enabled = true;
             textBox1.ReadOnly = false;
             buttonCreateRequirement.Enabled = true;
@@ -47,29 +45,22 @@ namespace P5
 
         private void buttonCreateRequirement_Click(object sender, EventArgs e)
         {
-            Requirement requirement = new Requirement();
-
-            requirement.Statement = textBox1.Text;
-  
-            requirement.FeaturedId = fakeFeatureRepository.GetFeatureByTitle(projectId, comboBox1.SelectedItem.ToString()).Id;
-            requirement.ProjectId = projectId;
-
-            int id = 1;
-            foreach (Requirement r in fakeRequirementRepository.GetAll(projectId))
+            if (comboBox1.SelectedItem != null)
             {
-                if (r.Id > id)
-                    id = r.Id + 1;
+                Requirement requirement = new Requirement();
 
-            }
+                requirement.Statement = textBox1.Text;
+                requirement.FeaturedId = fakeFeatureRepository.GetFeatureByTitle(projectId, comboBox1.SelectedItem.ToString()).Id;
+                requirement.ProjectId = projectId;
 
-            requirement.Id = id;
-            string returnString = fakeRequirementRepository.Add(requirement);
-            if (returnString != "")
-            {
-                string message = returnString;
-                string title = "Attention";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                MessageBox.Show(message, title, buttons);
+                string returnString = fakeRequirementRepository.Add(requirement);
+                if (returnString != "")
+                {
+                    string message = returnString;
+                    string title = "Attention";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    MessageBox.Show(message, title, buttons);
+                }
             }
         }
     }

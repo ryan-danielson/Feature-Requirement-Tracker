@@ -18,77 +18,68 @@ namespace P5
 
         public string Add(Requirement requirement)
         {
-            foreach (Requirement r in requirements)
-            {
-                if (r.Statement == requirement.Statement)
-                    return DUPLICATE_STATEMENT_ERROR;
-            }
+
+            if (requirements.Exists(item => item.Statement == requirement.Statement))
+                return DUPLICATE_STATEMENT_ERROR;
+
             if (requirement.Statement == "")
                 return EMPTY_STATEMENT_ERROR;
+            
+            int requirementId = 1;
+
+            foreach (Requirement r in requirements)
+            {
+                if (r.Id >= requirementId)
+                    requirementId = r.Id + 1;
+            }
+            requirement.Id = requirementId;
+            requirements.Add(requirement);
             return NO_ERROR;
         }
     
         public List<Requirement> GetAll(int ProjectId)
         {
-            List<Requirement> getAll = new List<Requirement>();
-            foreach (Requirement r in requirements)
-            {
-                if (r.ProjectId == ProjectId)
-                    getAll.Add(r);
-            }
-
-            return getAll;
+            return requirements.FindAll(items => items.ProjectId == ProjectId);
         }
 
         public string Remove(Requirement requirement)
         {
-            foreach (Requirement r in requirements)
+            if (requirements.Remove(requirements.Find(item => item == requirement)))
             {
-                if (r == requirement)
-                {
-                    requirements.Remove(r);
-                    return NO_ERROR;
-                }
+                foreach (Requirement r in requirements)
+                    Console.WriteLine("Still in repo: {0}",r.Statement);
+
+                return NO_ERROR;
             }
-            return REQUIREMENT_NOT_FOUND_ERROR;
+            else
+                return REQUIREMENT_NOT_FOUND_ERROR;
         }
 
         public string Modify(Requirement requirement)
         {
+            if (requirement.Statement == "")
+                return EMPTY_STATEMENT_ERROR;
+            
+            requirement.Id = requirements.Find(item => item.FeaturedId == requirement.FeaturedId).Id;
+
+            requirements[requirement.Id-1].Statement = requirement.Statement;
             return NO_ERROR;
+            
         }
 
         public Requirement GetRequirementById(int requirementId)
         {
-            Requirement requirement = new Requirement();
-
-            foreach (Requirement r in requirements)
-            {
-                if (r.Id == requirementId)
-                    requirement = r;
-            }
-
-            return requirement;
+            return requirements.Find(item => item.Id == requirementId);
         }
 
         public int CountByFeatureId(int featureId)
         {
-            int count = 0;
-            foreach (Requirement r in requirements)
-            {
-                if (r.FeaturedId == featureId)
-                    count++;
-            }
-            return count;
+            return requirements.FindAll(item => item.FeaturedId == featureId).Count();
         }
 
         public void RemoveByFeatureId(int featureId)
-        { 
-            foreach (Requirement r in requirements)
-            {
-                if (r.FeaturedId == featureId)
-                    requirements.Remove(r);
-            }
+        {
+            requirements.RemoveAll(item => item.FeaturedId == featureId);
         }
     }
 }

@@ -62,7 +62,6 @@ namespace P5
                 buttonSelectFeature.Enabled = true;
 
         }
-
         private void buttonSelectFeature_Click(object sender, EventArgs e)
         {
 

@@ -24,11 +24,6 @@ namespace P5
             currentFakeFeatureRepository = _CurrentFakeFeatureRepository;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonCreateFeature_Click(object sender, EventArgs e)
         {
             this.title = textBox1.Text;
@@ -40,7 +35,6 @@ namespace P5
                 MessageBox.Show(returnString, "", MessageBoxButtons.OK);
             else
                 this.Close();
-
         }
 
         private void FormCreateFeature_Load(object sender, EventArgs e)

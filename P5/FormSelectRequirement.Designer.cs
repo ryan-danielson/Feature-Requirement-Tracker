@@ -1,5 +1,5 @@
 ﻿
-namespace Builder
+namespace P5
 {
     partial class FormSelectRequirement
     {
@@ -32,7 +32,7 @@ namespace Builder
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.buttonSelectRequiremnet = new System.Windows.Forms.Button();
+            this.buttonSelectRequirement = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +52,6 @@ namespace Builder
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Enabled = false;
             this.label2.Location = new System.Drawing.Point(29, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 17);
@@ -67,17 +66,19 @@ namespace Builder
             this.comboBox1.Size = new System.Drawing.Size(624, 24);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.Text = "<Make Selection>";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // buttonSelectRequiremnet
+            // buttonSelectRequirement
             // 
-            this.buttonSelectRequiremnet.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonSelectRequiremnet.Enabled = false;
-            this.buttonSelectRequiremnet.Location = new System.Drawing.Point(604, 482);
-            this.buttonSelectRequiremnet.Name = "buttonSelectRequiremnet";
-            this.buttonSelectRequiremnet.Size = new System.Drawing.Size(151, 23);
-            this.buttonSelectRequiremnet.TabIndex = 4;
-            this.buttonSelectRequiremnet.Text = "Select Requirement";
-            this.buttonSelectRequiremnet.UseVisualStyleBackColor = true;
+            this.buttonSelectRequirement.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonSelectRequirement.Enabled = false;
+            this.buttonSelectRequirement.Location = new System.Drawing.Point(604, 482);
+            this.buttonSelectRequirement.Name = "buttonSelectRequirement";
+            this.buttonSelectRequirement.Size = new System.Drawing.Size(151, 23);
+            this.buttonSelectRequirement.TabIndex = 4;
+            this.buttonSelectRequirement.Text = "Select Requirement";
+            this.buttonSelectRequirement.UseVisualStyleBackColor = true;
+            this.buttonSelectRequirement.Click += new System.EventHandler(this.buttonSelectRequirement_Click);
             // 
             // buttonCancel
             // 
@@ -88,9 +89,14 @@ namespace Builder
             this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -100,11 +106,14 @@ namespace Builder
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(624, 380);
             this.dataGridView1.TabIndex = 6;
+            
             // 
             // Id
             // 
+            this.Id.DataPropertyName = "Id";
             this.Id.HeaderText = "Id";
             this.Id.MinimumWidth = 6;
             this.Id.Name = "Id";
@@ -114,6 +123,7 @@ namespace Builder
             // Requirement
             // 
             this.Requirement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Requirement.DataPropertyName = "Requirement";
             this.Requirement.HeaderText = "Requirement";
             this.Requirement.MinimumWidth = 6;
             this.Requirement.Name = "Requirement";
@@ -127,12 +137,13 @@ namespace Builder
             this.ClientSize = new System.Drawing.Size(801, 534);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonSelectRequiremnet);
+            this.Controls.Add(this.buttonSelectRequirement);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormSelectRequirement";
             this.Text = "Select Requirement";
+            this.Load += new System.EventHandler(this.FormSelectRequirement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -144,7 +155,7 @@ namespace Builder
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button buttonSelectRequiremnet;
+        private System.Windows.Forms.Button buttonSelectRequirement;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
