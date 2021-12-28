@@ -10,13 +10,13 @@ namespace P5
         {
             // A temporary dictionary to fake a database
             _AppUsers = new Dictionary<string, AppUser>();
-            _AppUsers.Add("dave", new AppUser
+            _AppUsers.Add("ryan", new AppUser
             {
-                UserName = "dave",
-                Password = "go",
-                FirstName = "Dave",
-                LastName = "Bishop",
-                EmailAddress = "david.b.bishop@gmail.com",
+                UserName = "ryan",
+                Password = "password",
+                FirstName = "Ryan",
+                LastName = "Danielson",
+                EmailAddress = "ryan.danielson@gmail.com",
                 IsAuthenticated = false
             });
         }
